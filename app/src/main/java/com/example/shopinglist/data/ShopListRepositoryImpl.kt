@@ -7,6 +7,13 @@ import java.lang.RuntimeException
 object ShopListRepositoryImpl: ShopListRepository {
     private var shopList = mutableListOf<ShopItem>()
 
+    init {
+        for (i in 0 until 10){
+            val item = ShopItem("Name $i", i, true)
+            addShopItem(item)
+        }
+    }
+
     private var autoIncrementId = 0
     override fun addShopItem(shopItem: ShopItem) {
         if (shopItem.id == ShopItem.UNDEFINED_ID) {
