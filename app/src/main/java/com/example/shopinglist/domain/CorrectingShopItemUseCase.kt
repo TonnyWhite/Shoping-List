@@ -1,8 +1,8 @@
 package com.example.shopinglist.domain
 
-class CorrectingShopItemUseCase {
+class CorrectingShopItemUseCase(private val shopListRepository: ShopListRepository) {
 
-    fun correctingUseCase(shopItem: ShopItem): ShopItem{
-        TODO()
+    fun correctingUseCase(shopItem: ShopItem){
+        shopListRepository.correctingUseCase(shopItem)
     }
 }

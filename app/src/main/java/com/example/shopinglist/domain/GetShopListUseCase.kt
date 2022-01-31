@@ -1,8 +1,8 @@
 package com.example.shopinglist.domain
 
-class GetShopListUseCase {
+class GetShopListUseCase(private val shopListRepository: ShopListRepository) {
 
-    fun getShopingList(): List<ShopItem>{
-        TODO()
+    fun getShopList(): List<ShopItem>{
+      return shopListRepository.getShopList()
     }
 }
