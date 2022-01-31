@@ -9,7 +9,6 @@ import java.lang.RuntimeException
 object ShopListRepositoryImpl: ShopListRepository {
     private var shopList = mutableListOf<ShopItem>()
 
-
     private val shopListLD = MutableLiveData<List<ShopItem>>()
     private var autoIncrementId = 0
 //    init {
