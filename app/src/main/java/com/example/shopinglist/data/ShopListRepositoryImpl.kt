@@ -7,8 +7,6 @@ import java.lang.RuntimeException
 object ShopListRepositoryImpl: ShopListRepository {
     private var shopList = mutableListOf<ShopItem>()
 
-
-
     private var autoIncrementId = 0
     override fun addShopItem(shopItem: ShopItem) {
         if (shopItem.id == ShopItem.UNDEFINED_ID) {
