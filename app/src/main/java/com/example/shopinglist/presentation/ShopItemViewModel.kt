@@ -49,7 +49,7 @@ class ShopItemViewModel : ViewModel() {
 
     }
 
-    fun correctingShopItemUseCase(inputName: String?, inputCount: String?) {
+    fun correctingShopItem(inputName: String?, inputCount: String?) {
         val name = parseName(inputName)
         val count = parseCount(inputCount)
         val fieldsValid = validateInput(name, count)
@@ -87,11 +87,11 @@ class ShopItemViewModel : ViewModel() {
         return result
     }
 
-    public fun resetErrorInputName(){
+     fun resetErrorInputName(){
         _errorInputName.value = false
     }
 
-    public fun resetErrorInputCount(){
+     fun resetErrorInputCount(){
         _errorInputCount.value = false
     }
 
