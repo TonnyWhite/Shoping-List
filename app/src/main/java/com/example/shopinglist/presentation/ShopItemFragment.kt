@@ -3,6 +3,7 @@ package com.example.shopinglist.presentation
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ class ShopItemFragment: Fragment() {
     private var shopItemId: Int = ShopItem.UNDEFINED_ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("ShopItemFragment", "onCreate")
         super.onCreate(savedInstanceState)
         parseParams()
     }
@@ -156,10 +158,10 @@ class ShopItemFragment: Fragment() {
     }
     companion object {
         private const val EXTRA_SCREEN_MODE = "extra_mode"
-        private const val MODE_EDIT = "mode_edit"
-        private const val MODE_ADD = "mode_add"
+        const val MODE_EDIT = "mode_edit"
+        const val MODE_ADD = "mode_add"
         private const val EXTRA_SHOP_ITEM_ID = "extra_shop_item_id"
-        private const val MODE_UNKNOWN = ""
+        const val MODE_UNKNOWN = ""
 
         fun newInstanceAddItem(): ShopItemFragment{
             return ShopItemFragment().apply {

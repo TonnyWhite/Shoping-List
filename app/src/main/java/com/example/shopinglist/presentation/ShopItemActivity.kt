@@ -16,10 +16,6 @@ import com.google.android.material.textfield.TextInputLayout
 import java.lang.RuntimeException
 
 class ShopItemActivity : AppCompatActivity() {
-
-
-
-
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItem.UNDEFINED_ID
 
@@ -27,10 +23,11 @@ class ShopItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_item)
         parseIntent()
-        lunchRightMode()
+        if(savedInstanceState == null){
+            lunchRightMode()
+        }
+
     }
-
-
 
     private fun lunchRightMode() {
        val fragment = when (screenMode) {
@@ -39,13 +36,9 @@ class ShopItemActivity : AppCompatActivity() {
             else -> throw RuntimeException("Unknown screen mode $screenMode")
         }
         supportFragmentManager.beginTransaction()
-            .add(R.id.shop_item_container,fragment)
+            .replace(R.id.shop_item_container,fragment)
             .commit()
     }
-
-
-
-
 
     private fun parseIntent() {
         if (!intent.hasExtra(EXTRA_SCREEN_MODE)) {
@@ -55,9 +48,7 @@ class ShopItemActivity : AppCompatActivity() {
         if (mode != MODE_EDIT && mode != MODE_ADD) {
             throw RuntimeException("Unknown screen mode $mode")
         }
-
         screenMode = mode
-
         if (screenMode == MODE_EDIT) {
             if (!intent.hasExtra(EXTRA_SHOP_ITEM_ID)) {
                 throw RuntimeException("Param shop item id is absent")
@@ -66,7 +57,6 @@ class ShopItemActivity : AppCompatActivity() {
         }
 
     }
-
 
     companion object {
         private const val EXTRA_SCREEN_MODE = "extra_mode"
