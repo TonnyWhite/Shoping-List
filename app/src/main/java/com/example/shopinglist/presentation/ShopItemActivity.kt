@@ -18,6 +18,8 @@ import java.lang.RuntimeException
 class ShopItemActivity : AppCompatActivity() {
 
 
+
+
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItem.UNDEFINED_ID
 
@@ -28,16 +30,22 @@ class ShopItemActivity : AppCompatActivity() {
         lunchRightMode()
     }
 
+
+
     private fun lunchRightMode() {
-        val fragment = when (screenMode) {
+       val fragment = when (screenMode) {
             MODE_EDIT -> ShopItemFragment.newInstanceEditItem(shopItemId)
             MODE_ADD -> ShopItemFragment.newInstanceAddItem()
             else -> throw RuntimeException("Unknown screen mode $screenMode")
         }
         supportFragmentManager.beginTransaction()
-            .add(R.id.shop_item_container, fragment)
+            .add(R.id.shop_item_container,fragment)
             .commit()
     }
+
+
+
+
 
     private fun parseIntent() {
         if (!intent.hasExtra(EXTRA_SCREEN_MODE)) {
@@ -58,6 +66,7 @@ class ShopItemActivity : AppCompatActivity() {
         }
 
     }
+
 
     companion object {
         private const val EXTRA_SCREEN_MODE = "extra_mode"
