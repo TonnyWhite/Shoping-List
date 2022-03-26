@@ -11,24 +11,34 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinglist.R
+import com.example.shopinglist.ShoppingApp
 import com.example.shopinglist.databinding.ActivityMainBinding
 import com.example.shopinglist.domain.ShopItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.lang.RuntimeException
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
     private lateinit var viewModel: MainViewModel
+
     private lateinit var shopListAdapter: ShopListAdapter
+
+    @Inject
+    lateinit var  viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as ShoppingApp).component
+    }
 
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpRecyclerView()
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         viewModel.shopList.observe(this) {
             shopListAdapter.submitList(it)
 
